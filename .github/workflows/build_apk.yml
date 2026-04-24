@@ -16,17 +16,14 @@ jobs:
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.11.4'
         channel: 'stable'
+        # ترك النسخة لتكون الأحدث المستقرة لضمان التوافق مع خوادم GitHub
         
     - name: Install dependencies
-      run: |
-        flutter pub get
-        # عرض أي خطأ بوضوح إذا حدث
-        flutter pub upgrade --major-versions --dry-run || true
+      run: flutter pub get
 
     - name: Build APK
-      run: flutter build apk --release --no-pub
+      run: flutter build apk --release
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
